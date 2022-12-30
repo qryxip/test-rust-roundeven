@@ -30,6 +30,7 @@ jobs:
           - x86_64-unknown-linux-gnu
         include:
           - { target-triple: x86_64-pc-windows-msvc  , os: windows-2022 }
+          - { target-triple: x86_64-pc-windows-gnu   , os: windows-2022 }
           - { target-triple: x86_64-apple-darwin     , os: macos-11     }
           - { target-triple: x86_64-unknown-linux-gnu, os: ubuntu-20.04 }
 
@@ -63,4 +64,4 @@ jobs:
         run: poetry run cargo clippy --target ${{ matrix.target-triple }} -- -D warnings
 
       - name: Run
-        run: poetry run cargo run
+        run: poetry run cargo run --target ${{ matrix.target-triple }}
