@@ -1,0 +1,10 @@
+[package]
+name = "test-rust-roundeven"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+eyre = "0.6.8"
+libm = "0.2.6"
+pyo3 = { version = "0.17.3", features = ["auto-initialize", "abi3-py310"] }

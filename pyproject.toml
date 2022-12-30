@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "test-rust-roundeven"
+version = "0.0.0"
+description = ""
+authors = ["Ryo Yamashita <qryxip@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.24.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
