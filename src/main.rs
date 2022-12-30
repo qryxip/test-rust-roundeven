@@ -1,7 +1,23 @@
+use std::env;
+
 use pyo3::Python;
 
 fn main() -> eyre::Result<()> {
     Python::with_gil(|py| {
+        // workaround for https://github.com/PyO3/pyo3/issues/983
+        if cfg!(any(windows, target_os = "macos")) {
+            if let Ok(virtual_env) = env::var("VIRTUAL_ENV") {
+                let site_packages = if cfg!(windows) {
+                    format!(r"{virtual_env}\Lib\site-packages")
+                } else {
+                    format!("{virtual_env}/lib/python3.10/site-packages")
+                };
+                py.import("sys")?
+                    .getattr("path")?
+                    .call_method1("append", (site_packages,))?;
+            }
+        }
+
         let np_round = py.import("numpy")?.getattr("round")?;
         let np_round = |v| np_round.call1((v,));
 
