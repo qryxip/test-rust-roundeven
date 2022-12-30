@@ -61,7 +61,7 @@ jobs:
         uses: Swatinem/rust-cache@v2
 
       - name: cargo-clippy
-        run: poetry run cargo clippy --target ${{ matrix.target-triple }} -- -D warnings
+        run: poetry run -- cargo clippy --target ${{ matrix.target-triple }} -- -D warnings
 
       - name: Run
-        run: poetry run cargo run --target ${{ matrix.target-triple }}
+        run: poetry run -- cargo run --target ${{ matrix.target-triple }}
