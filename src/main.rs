@@ -4,7 +4,7 @@ use pyo3::Python;
 
 fn main() -> eyre::Result<()> {
     Python::with_gil(|py| {
-        // workaround for https://github.com/PyO3/pyo3/issues/983
+        // workaround for https://github.com/PyO3/pyo3/issues/1896
         if cfg!(any(windows, target_os = "macos")) {
             if let Ok(virtual_env) = env::var("VIRTUAL_ENV") {
                 let site_packages = if cfg!(windows) {
